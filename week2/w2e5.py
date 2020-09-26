@@ -1,5 +1,4 @@
 # Uses sieve of Eratosthenes algorithm to generate primes and check if n is one of them
-#   Becomes extremely efficient for very large primes
 
 n = int(input("n: "))
 
