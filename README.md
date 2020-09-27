@@ -1,2 +1,2 @@
-# Python-Intro
-My notes for introductory python coursework
+# Introductory Python & DS stuff
+My notes for introductory python / ML coursework
