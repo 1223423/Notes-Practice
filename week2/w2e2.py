@@ -1,4 +1,4 @@
-# Simple power function for inputs
+# Simple power function 
 
 b = int(input("Base: "))
 e = int(input("Exponent: "))
