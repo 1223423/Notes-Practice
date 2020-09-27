@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sieve of Eratosthenes</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  
+  <script type="text/javascript">
+
+    /* Initialize integers */
+
+    var n = 400;
+    var integers = new Array();
+
+    for(var i=0; i<n; i++){
+      integers[i] = 1;
+    }
+
+    /* Draw HTML table */
+
+    generate_Table(n);
+    generate_GUI();
+    
+    var limit = Math.sqrt(n);
+
+    for(var p=2; p<=limit; p++){
+      if(integers[p]){
+        for(var j=(p*p); j<=n; j+=p){
+          integers[j] = 0;
+        }
+      }
+    }
+    //Optimization: Loop integers up to sqrt(n)
+    //Optimization: Start inner loop from p^2
+
+    var p = 2;
+    var removed = new Array();
+
+    function update(){
+
+      for(i=0; i<removed.length; i++){
+        var cell = document.getElementById("cell" + removed[i]);
+        cell.setAttribute("style","background-color: red;");
+      }
+      removed = [];
+
+      if(p <= limit){
+        if(integers[p]){
+          for(var j=(p*p); j<=n; j+=p){
+            integers[j] = 0;
+            removed.push(j);
+
+            //Update table cells here
+            var cell = document.getElementById("cell"+j);
+            cell.setAttribute("style","background-color: orange;");
+          }
+        }
+            document.getElementById("gui_p").innerHTML = p;
+            document.getElementById("gui_removed").innerHTML= "Multiples of p removed: " + JSON.stringify(removed);
+        p++;
+      }
+      else {
+        document.getElementById("gui_removed").innerHTML = "";
+        document.getElementById("gui_p").innerHTML = "Sieving finished. </br>";
+
+      }
+    }
+
+
+    function generate_GUI(){
+
+      var body = document.getElementsByTagName("body")[0];
+
+      // Update button
+      var input = document.createElement("input");
+      input.setAttribute("type","button");
+      input.setAttribute("value","Next");
+      input.setAttribute("onclick","update()");
+
+      // Current P value + marked multiples this iteration
+      var gui_p = document.createElement("p");
+      var gui_removed = document.createElement("p");
+      gui_p.setAttribute("id","gui_p");
+      gui_removed.setAttribute("id","gui_removed");
+
+      body.appendChild(gui_p);
+      body.appendChild(gui_removed);
+      body.appendChild(input);
+    }
+
+
+    function generate_Table(size) {
+
+      // Generates open table of integers
+
+      var body = document.getElementsByTagName("body")[0];
+      var table = document.createElement("table");
+      var table_body = document.createElement("tbody");
+      var limit = Math.sqrt(n);
+      // Generate cells
+      var num = 0;
+      for(var i=0; i<limit; i++){
+        var row = document.createElement("tr");
+
+        for(var j=0; j<limit; j++){
+          num++;
+          var cell = document.createElement("td");
+          var cell_text = document.createTextNode(num);
+          cell.appendChild(cell_text);
+          cell.setAttribute("style", "background-color: green;");
+          cell.setAttribute("id","cell"+num);
+          row.appendChild(cell);
+        }
+        table_body.appendChild(row);
+      }
+      table.appendChild(table_body);
+      body.appendChild(table);
+      table.setAttribute("border","2");
+    }
+  </script>
+  </body>
+</html>
