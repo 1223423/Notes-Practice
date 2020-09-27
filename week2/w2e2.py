@@ -3,6 +3,9 @@
 b = int(input("Base: "))
 e = int(input("Exponent: "))
 
+# Turbo brainpower solution
+print(b**e)
+
 # Recursive solution
 def power(b,e):
     if(e == 0):
