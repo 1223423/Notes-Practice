@@ -2,17 +2,12 @@ a = int(input("A:"))
 b = int(input("B:"))
 c = int(input("C:"))
 
-# This function returns a, b, and c in ascending order
-def sortValues(a,b,c):
-
-    sides = [a,b,c]
-    sides.sort()
-    return sides[0], sides[1], sides[2]
-
 # This function determines if lengths a,b,c form a valid triangle
 def triangle_isvalid(a,b,c):
 
-    a, b, c = sortValues(a, b, c)
+    sides = [a,b,c]
+    sides.sort()
+    a, b, c = sides
 
     # If any two sides > than the remaining side
     if((a + b > c) and (a + c > b) and (b + c > a)):
