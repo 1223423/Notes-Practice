@@ -14,12 +14,12 @@ def triangle_isvalid(a,b,c):
 
     a, b, c = sortValues(a, b, c)
 
-    # Check if triangle is valid (any two sides > than the remaining side)
+    # If any two sides > than the remaining side
     if((a + b > c) and (a + c > b) and (b + c > a)):
-        # Determine kind of triangle
-        return triangle_determine(a,b,c)
+        # Then this is a valid triangle!
+        return True
     else:
-        return "Triangle not valid" 
+        return False
 
 # This function determines the kind of triangle, given that it is valid
 def triangle_determine(a,b,c):
@@ -27,4 +27,9 @@ def triangle_determine(a,b,c):
     c2 = c**2
     return "right" if (sum_sides == c2) else ("acute" if (sum_sides > c2) else "obtuse")
 
-print(triangle_isvalid(a,b,c))
+
+# Main program logic
+if triangle_isvalid(a,b,c):
+    print(triangle_determine(a,b,c))
+else:
+    print("This is not a valid triangle.")
