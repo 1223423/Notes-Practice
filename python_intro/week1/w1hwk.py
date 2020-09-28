@@ -5,6 +5,7 @@ c = int(input("C:"))
 # This function determines if lengths a,b,c form a valid triangle
 def triangle_isvalid(a,b,c):
 
+    # First, sort the values in ascending order
     sides = [a,b,c]
     sides.sort()
     a, b, c = sides
