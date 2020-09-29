@@ -6,7 +6,7 @@ price_melon = int(input("Melon cost: "))
 budget = 10000
 basket = 100
 
-# Instead of looping through n of fruits we loop through through the budget and interate by costs
+# Instead of looping through n of fruits we loop through through the budget and iterate by costs
 # This way we're checking far less combinations
 for o in range(0, budget, price_orange):
     # Notice how we can use the previous orange costs to narrow this loop's range further
