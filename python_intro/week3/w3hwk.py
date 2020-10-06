@@ -21,7 +21,7 @@ def settle(payments, debts):
             if person != account:
                 debts[account]['owes'] += transaction
             else:
-                debts[account]['isowed'] += transaction
+                debts[account]['isowed'] += transaction * (len(payments)-1)
 
 # Prints a summary of current debts
 def summarise(debts):
