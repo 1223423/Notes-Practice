@@ -1,4 +1,4 @@
-# What in is a integral multiple? Integer multiple?
+# What is an integral multiple? Integer multiple?
 
 x = int(input("x: "))
 y = int(input("y: "))
