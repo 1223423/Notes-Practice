@@ -1,32 +1,24 @@
-
-# Payment history
-payments = {
-    'John': float(input("John paid: ")),
-    'Peter' : float(input("Peter paid: ")),
-    'William' : float(input("William paid: "))
+spending = {
+    "j" : int(input("John: ")),
+    "p" : int(input("Peter: ")),
+    "w" : int(input("William: "))
 }
 
-# Debt accounts
-debts = {
-    'John' : {'owes': 0, 'isowed' : 0},
-    'Peter' : {'owes': 0, 'isowed': 0},
-    'William' : {'owes': 0, 'isowed': 0}
+debt = {
+    "j" : 0,
+    "p" : 0,
+    "w" : 0
 }
+def splitcosts(spend, debt):
+    for spender in spending:
+        for debtor in debt:
 
-# Settles debts with equal split for all payments
-def settle(payments, debts):
-    for person in payments:
-        for account in debts:
-            transaction = round(payments[person]/len(debts),2)
-            if person != account:
-                debts[account]['owes'] += transaction
+            split = spending[spender]/len(debt)
+
+            if(spender == debtor):
+                debt[spender]-= split
             else:
-                debts[account]['isowed'] += transaction * (len(payments)-1)
+                debt[debtor]+= split
+    print(debt)
 
-# Prints a summary of current debts
-def summarise(debts):
-    for account in sorted(debts, reverse = True, key = lambda x: (debts[x]['owes'])):
-        print(account, "Owes: ", debts[account]['owes'], "Receives: ", debts[account]['isowed'])
-
-settle(payments, debts)
-summarise(debts)
+splitcosts(spending, debt)
